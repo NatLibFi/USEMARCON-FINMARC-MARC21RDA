@@ -1,5 +1,5 @@
 FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
-10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 18.5.2017 (TV)
+10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 25.8.2017 (TV)
 
 #define version 317
 
@@ -809,11 +809,6 @@ B37$a           | 337(newest)$2   | 'rdamedia'
 000/7/          | 337(new)$a      | 'elektroninen'
 #endif
 
-// Helle-erikoisuus: kielikoodi 'non' merkkaakin 'ei kielellistä aineistoa' pro 'muinaisnorja'
-
-#if (RegFind(@041, 'non') >= 0)
-041             | 008/36-38/      | 'zxx'
-#endif
 
 // *** VAIHTUVAMITTAISET KENTÄT ***
 
@@ -982,12 +977,6 @@ D41             | 041             | Sort('abdefghjkmn')
 055(1)$a        | 852(newest)$a   | 'FI-Pom'
 055(1)$a        | 852(newest)$h   | S
 
-#if (RegFind(@055$a, '8[24]\\.21') >= 0)
-055I1           | 084I1           | ' '
-055I2           | 084I2           | ' '
-055$a           | 084$a           | S
-#endif
-
 056             | 090(new)        | S
 056I1           | 852(new)I1      | ' '
 056I2           | 852(newest)I2   | ' '
@@ -1056,13 +1045,6 @@ AAF             | 084(new)        | S + '$2kssb'
                                     Replace ('=' By '$x=');
                                     Replace ('"' By '$x"');
                                     Replace ('*' By '$x*')
-
-098$a           | <AAE(new)I1     | If (I1 = '1') Then '9' Else ' '
-098$a           | <AAE(newest)I2  | I2
-098$a           | <AAE(newest)$a(nt) | S
-AAEI1           | 084(new)I1      | S
-AAEI2           | 084(newest)I2   | S
-AAE             | 084(newest)     | S + '$2ykl'
 
 100I1           | 100I1           | If (I1=1 Or I1=2) Then '1' Else S
 100I2           | 100I2           | ' '
@@ -1761,17 +1743,6 @@ J87             | 787             | S;
 //Info: Kirjastokohtaiset huomautuskentät konvertoidaan: 565-589->590, kentät 590-599 säilyvät samoina.
 //Tietokantakohtaisesti kenttiä voi konvertoida toisinkin, riippuu huomautuksen sisällöstä.
 
-566             | 590(new)        | S
-
-567             | 590(new)        | S
-567             | 590(newest)$5   | 'FI-Helle'
-
-568             | 590(new)        | S
-568             | 590(newest)$5   | 'FI-Helle'
-
-569             | 590(new)        | S
-569             | 590(newest)$5   | 'FI-Helle'
-
 570             | 590(new)        | S
 
 571I1           | 856I1           | ' '
@@ -1824,9 +1795,6 @@ J87             | 787             | S;
 593             | 593(new)        | S
 
 594             | 594(new)        | S
-
-595             | 590(new)        | S
-595             | 590(newest)$5   | 'FI-Helle'
 
 600I1           | 600I1           | If (S = '1' Or S = '2') Then '1'
                                     Else If (S = ' ' And Exists(@600(1)$h)) Then '1'
@@ -1917,6 +1885,14 @@ K30             | 630             | S;
                                     RegReplaceTable('pieni-isoksi-osakentan-alussa.tbl');
                                     MoveBefore('l', $o, 'l', '', '', ',|;|.');
                                     If (RegFind('[\\)\\.]\$') < 0) S + '.'
+
+
+652             | 650(new)I1      | ' '
+652             | 650(newest)I2   | '7'
+652             | 650(newest)     | S; Replace('$b' By '$x');
+                                       Replace ('$y' By '$A');
+                                       Replace('$z' By '$y');
+                                       Replace('$A' By '$z') + '$2ysa'                
 
 653             | 650(new)I1      | ' '
 653             | 650(newest)I2   | '7'
