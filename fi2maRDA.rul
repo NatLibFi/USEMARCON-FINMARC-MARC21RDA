@@ -1,5 +1,5 @@
 FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
-10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 25.8.2017 (TV)
+10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 29.8.2017 (TV)
 
 #define version 317
 
@@ -91,7 +91,7 @@ FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
                       RegReplace('\\bkuv\\.', 'kuvitettu', 'g'); \
                       RegReplace('verkkojulkaisu', 'verkkoaineisto', 'g'); \
                       RegReplace('Verkkojulkaisu', 'Verkkoaineisto', 'g')
-                      
+
 #define macro 300BE | RegReplace('kartt\\.', 'karttoja', 'g'); \
                       RegReplace('kuv\\.', 'kuvitettu', 'g'); \
                       RegReplace('mv\\.', 'mustavalkoinen', 'g'); \
@@ -151,11 +151,11 @@ FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
 
 #define macro TRIOT            | RegReplace('^piano, jouset', 'piano, viulu, sello'); \
                                  RegReplace('^jouset', 'viulu, alttoviulu, sello')
-                                 
+
 #define macro KVARTETOT        | RegReplace('^piano, jouset', 'piano, viulu, alttoviulu, sello');\
                                  RegReplace('^jouset', 'viulut (2), alttoviulu, sello'); \
                                  RegReplace('^puupuhaltimet', 'huilu, oboe, klarinetti, fagotti')
-                              
+
 #define macro KVINTETOT        | RegReplace('^jouset', 'viulut (2), alttoviulut (2), sello'); \
                                  RegReplace('^piano, jouset', 'piano, viulut (2), alttoviulu, sello'); \
                                  RegReplace('^puhaltimet', 'huilu, oboe, klarinetti, käyrätorvi, fagotti')
@@ -199,7 +199,7 @@ FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
 #define macro FUNKTIOVALIMERKIT | RegReplace('(\\)|[Mm]r\\.|[Mm]rs\\.|[Jj]r\\.|Ph\\.+\\s+D\\.|Dr\\.|Sr\\.|[Rr]ev\\.|\\s[A-Za-z]\\.|\\.[A-Za-z]\\.)($4|$e)', '\\1,\\2', 'g'); \
                                   RegReplace('\\.($[e|4])', ',\\1', 'g'); \
                                   RegReplace(',,', ',')
-                                  
+
 
 #define macro FUNKTIOT2 | RegReplace('(\\)|[Mm]r\\.|[Mm]rs\\.|[Jj]r\\.|Ph\\.+\\s+D\\.|Dr\\.|Sr\\.|[Rr]ev\\.|\\s[A-Za-z]\\.|\\.[A-Za-z]\\.)($4|$j)', '\\1,\\2', 'g'); \
                           RegReplace('\\.($[j|4])', ',\\1', 'g'); \
@@ -283,7 +283,7 @@ FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
 008/33/         | 500(new)$a      | If (InTable(S, '008-32-arvostelukoodi.tbl')) Then Table ('008-32-arvostelukoodi.tbl')
 008/33/         | 008/33/         | '|'
 008/34/         | 008/34/         | Table ('008-33-kirjallisuuslaji.tbl')
-008/34/         | 008/25/         | If (@008/34/ = 't') Then 'z' Else If (@008/34/ = 'w') Then 'u' Else If (@008/34/ = 'x') Then 'l' 
+008/34/         | 008/25/         | If (@008/34/ = 't') Then 'z' Else If (@008/34/ = 'w') Then 'u' Else If (@008/34/ = 'x') Then 'l'
 008/34/         | 008/34/         | If ((@008/34/ = ' ') And (RegFind(@098$a, '[8][012345].')) >= 0) '1'
 008/35/         | 008/35/         | If (S != ' ') Then S
 
@@ -533,7 +533,7 @@ B37$a           | 337(newest)$2   | 'rdamedia'
 008/24/         | 338(newest)$b   | 'nc'
 008/24/         | 338(newest)$2   | 'rdacarrier'
 #endif
- 
+
 
 // 007 (sd) Äänilevy
 #if ((@000/7/ = 'i' Or @000/7/ = 'j') And @008/24/ = 'q')
@@ -804,7 +804,7 @@ B37$a           | 337(newest)$2   | 'rdamedia'
 008/22/         | 336(new)$a      | If (S = 'b' or S = 'f' or S = 'g' or S = 'j') Or (RegFind(@300, 'CD-ROM') >=0) Then 'tietokoneohjelma'
 008/22/         | 336(new)$a      | If (S = 'd' or S = 'e') Then 'teksti'
 008/22/         | 336(new)$a      | If (S = 'h') Then 'ääni'
-008/22/         | 336$a           | If (S = 'm' or S = 'i') Then 'useita sisältötyyppejä' 
+008/22/         | 336$a           | If (S = 'm' or S = 'i') Then 'useita sisältötyyppejä'
 008/22/         | 336(new)$a      | If (S = 'u' or S = 'z' or S = ' ' or S = '|') And (RegFind(@300, 'CD-ROM') <0) Then 'määrittelemätön'
 000/7/          | 337(new)$a      | 'elektroninen'
 #endif
@@ -881,7 +881,7 @@ B37$a           | 337(newest)$2   | 'rdamedia'
 033$a           | 033$a           | Replace('r' By '', at Beginning); If (Len(S)=4) Then S + '----'
 033$a           | 033$a           | Replace('r' By '', at Beginning); If (Len(S)=6) Then S + '--'
 033$a           | 033$a           | Replace('r' By '', at Beginning); If (Len(S)>6) Then S
-033$b           | 033$p           | S 
+033$b           | 033$p           | S
 
 034I1           | 034I1           | If (I1='2') Then '3' Else S
 034I2           | 034I2           | ' '
@@ -889,7 +889,7 @@ B37$a           | 337(newest)$2   | 'rdamedia'
 034$b           | 034$b           | S
 034$c           | 034$c           | S
 034$d           | 034$d           | S
-034$e           | 034$e           | S 
+034$e           | 034$e           | S
 034$f           | 034$f           | S
 034$g           | 034$g           | S
 034$h           | 034$h           | S
@@ -911,21 +911,21 @@ B37$a           | 337(newest)$2   | 'rdamedia'
 041$a           | 040$b           | If (S = 'swe') Then 'swe' Else 'fin'
 040   | 040    | Sort('abed')
 
-#if (RegFind(@041, 'non') < 0)
 041I1           | 041I1           | If (I1=' ') Then '0' Else S
 041I2           | 041I2           | ' '
-041$a/1-3/(n=1) | 008/36-38/      | If (n=1) Then Table ('041-kielikoodit.tbl') 
+041$a/1-3/(n=1) | 008/36-38/      | If (n=1) Then Table ('041-kielikoodit.tbl')
 041$a           | <D41$a(no)      | Sto(0); RegFind('^(.{1,3})'); RegMatch(1); Redo; Mem(0); From(4)
 041$a           | <D41$d(no)      | Sto(0); RegFind('^(.{1,3})'); RegMatch(1); Redo; Mem(0); From(4)
 041$b           | <D41$b(no)      | Sto(0); RegFind('^(.{1,3})'); RegMatch(1); Redo; Mem(0); From(4)
 041$c           | <D41$h(no)      | Sto(0); RegFind('^(.{1,3})'); RegMatch(1); Redo; Mem(0); From(4)
-D41$a           | 041$a           | If (Not (@000/7/ = 'i' Or @000/7/ = 'j' Or (@000/7/ = 'a' And @008/24/ = 'v'))) Then KIELIKOODIT; Table('041-kielikoodit.tbl'); Replace ('$x' By '$a')
-D41$b           | 041$b           | KIELIKOODIT
-D41$d           | 041$d           | If (@000(1)/7/ = 'i' Or @000/7/ = 'j' Or (@000/7/ = 'a' And @008/24/ = 'v')) Then KIELIKOODIT; Table('041-kielikoodit.tbl'); Replace ('$x' By '$d')
-D41$b           | 041$j           | If (@000(1)/7/ = 'g') Then Table('041-kielikoodit.tbl'); Replace ('$x' By '$j'); KIELIKOODIT
-D41$h           | 041$h           | Table('041-kielikoodit.tbl'); Replace ('$x' By '$h'); KIELIKOODIT
+D41$a           | 041$a           | If (Not (@000/7/ = 'i' Or @000/7/ = 'j' Or
+(@000/7/ = 'a' And @008/24/ = 'v'))) Then KIELIKOODIT; Table('041-kielikoodit.tbl'); Replace ('$x' By '$a')
+D41$d           | 041$d           | If (@000(1)/7/ = 'i' Or @000/7/ = 'j' Or
+(@000/7/ = 'a' And @008/24/ = 'v')) Then KIELIKOODIT; Table('041-kielikoodit.tbl'); Replace ('$x' By '$d')
+D41$b           | 041$b           | If (@000(1)/7/ != 'g') Then Table('041-kielikoodit.tbl'); Replace ('$x' By '$b')
+D41$b           | 041$j           | If (@000(1)/7/ = 'g') Then Table('041-kielikoodit.tbl'); Replace ('$x' By '$j')
+D41$h           | 041$h           | Table('041-kielikoodit.tbl'); Replace ('$x' By '$h')
 D41             | 041             | Sort('abdefghjkmn')
-#endif
 
 044I1           | 049I1           | ' '
 044I2           | 049I2           | ' '
@@ -1039,6 +1039,13 @@ D41             | 041             | Sort('abdefghjkmn')
 081$a           | <AAF(new)$a(nt) | S
 AAF             | 084(new)        | S + '$2kssb'
 
+098$a           | <AAE(new)I1     | If (I1 = '1') Then '9' Else ' '
+098$a           | <AAE(newest)I2  | I2
+098$a           | <AAE(newest)$a(nt) | S
+AAEI1           | 084(new)I1      | S
+AAEI2           | 084(newest)I2   | S
+AAE             | 084(newest)     | S + '$2ykl'
+
 085$a           | 080(new)$a      | S;
                                     Replace ('(' By '$x(');
                                     Replace ('-' By '$x-');
@@ -1064,7 +1071,7 @@ E00             | 100             | S;
 110I1           | 110I1           | If (S = '1') Then '1' Else If ((S = '2' Or S = ' ') And (RegFind(@110$a, ', ') >= 0)) Then '0' Else '2'
 110I2           | 110I2           | ' '
 110$p           | <E10$a          | S
-110$a           | <E10$a          | If Exists($p) Then $p +'. '+S Else S  
+110$a           | <E10$a          | If Exists($p) Then $p +'. '+S Else S
 110$c           | <E10$b          | S
 110$i           | <E10$n          | '(' + S + ')'
 110$k           | <E10$d          | '(' + S + ')'
@@ -1122,7 +1129,7 @@ E11             | 111             | If (((RegFind('.*\\$(.)') < 0) Or (RegMatch(
 240$p           | <E40$a          | + If (RegFind('[Vv]alikoima') < 0) Then ' (' + S + ')'
 //2//240$p           | <E40(nt)$g(1)   | + If (RegFind('[Vv]alikoima') < 0) Then {
 //2//                                      If (D != '') Then ' (' + S + ')' Else '(' + S +  //2//     //2//                                ')';
-//2//                                      }           
+//2//                                      }
 240$g           | <E40$n          | S
 240$s           | <E40$p          | If (RegFind('[Vv]alikoima') < 0) Then S
 240$s           | <E40$k          | If (RegFind('[Vv]alikoima') >= 0) Then 'Valikoima'
@@ -1139,7 +1146,7 @@ E40             | 130             | RAAMATTU; If (Not Exists(@1??)) Then S;
                                     Replace ('$o' By ';$o');
                                     Replace ('$l' By ',$l');
                                     Replace ('$n' By '.$n');
-                                    Replace ('$A' By ',$n'); 
+                                    Replace ('$A' By ',$n');
                                     Replace ('$k' By '.$k');
                                     RegReplaceTable('pieni-isoksi-osakentan-alussa.tbl');
                                     MoveBefore('l', $o, 'l', '', '', ',|;|.');
@@ -1227,10 +1234,15 @@ F45             | 245             | S;
                                     If (NextSub($a, '=1') = 'a') ReplaceOcc ('$a' By ' ;$b', '=2', Strict);
                                     ReplaceOcc ('$a' By ' ; ', '>1', Strict);
                                     If (NextSub($a, '=1') != 'a' And Not ExistsIn(S, $b)) ReplaceOcc ('$r' By ' =$b', '=1', Strict);
+                                    MoveBefore('r', $b);
+
                                     Replace ('$r' By ' = ', Strict);
                                     Replace ('$t' By '. ', Strict);
-                                    ReplaceOcc ('$c' By ' / ', '>1', Strict); Replace ('$c' By ' /$c', Strict);
-                                    If (ExistsIn(S, $c)) Replace ('$d' By ' / ', Strict); ReplaceOcc ('$d' By ' / ', '>1', Strict); Replace ('$d' By ' /$c', Strict);
+                                    ReplaceOcc ('$c' By ' / ', '>1', Strict);
+                                    Replace ('$c' By ' /$c', Strict);
+                                    If (ExistsIn(S, $c)) Replace ('$d' By ' / ', Strict);
+                                    ReplaceOcc ('$d' By ' / ', '>1', Strict);
+                                    Replace ('$d' By ' /$c', Strict);
                                     Replace ('$e' By ' ; ', Strict);
 
                                     If (PreviousSub($n, '=1') = 'h' Or PreviousSub($p, '=1') = 'h') MoveBefore('np', $h, 'np', '', '', ' :| /| ;|.| =');
@@ -1414,7 +1426,7 @@ F30             | 300             | If (RegFind('[\\)\\.]\$') < 0) Then S + '.' 
                                     300AE
 
 306I1           | 306I1           | ' '
-306I2           | 306I2           | ' '   
+306I2           | 306I2           | ' '
 306$a           | 306$a           | S
 
 351I1           | 351I1           | ' '
@@ -1584,7 +1596,7 @@ M02             | 502              | S;
 504I1           | 504I1           | ' '
 504I2           | 504I2           | ' '
 504$a           | 504$a           | If (RegFind('\\.\$') < 0) Then S + '.' Else S;
-                                    ReplaceOcc ('$a' By '. - ','>1', Strict) 
+                                    ReplaceOcc ('$a' By '. - ','>1', Strict)
 
 
 505I1           | 505I1           | '0'
@@ -1664,7 +1676,7 @@ M09             | 509             | S;
 J34             | 534             | If (RegFind('\\.\$') < 0) Then S + '.' Else S;
                                     If (PreviousSub($t, '>=1') != 'p') Replace ('$t' By '.$t');
                                     If (PreviousSub($b, '>=1') != 'p') Replace ('$b' By ',$b');
-                                    If (PreviousSub($m, '>=1') != 'p') Replace ('$m' By ',$m'); 
+                                    If (PreviousSub($m, '>=1') != 'p') Replace ('$m' By ',$m');
                                     If (PreviousSub($c, '>=1') != 'p') Replace ('$c' By ',$c');
                                     If (PreviousSub($e, '>=1') != 'p') Replace ('$e' By '.$e');
                                     If (PreviousSub($f, '>=1') != 'p') Replace ('$f' By '.$f');
@@ -1684,10 +1696,10 @@ J34             | 534             | If (RegFind('\\.\$') < 0) Then S + '.' Else 
 #if (Not Exists (@440)) And (Not Exists (@490))
 
 540I1           | <J30I1          | ' '
-540I2           | <J30I2          | '0' 
+540I2           | <J30I2          | '0'
 540$a           | <J30$a          | S
 540$c           | <J30$a          | + '. ' + S
-540$b           | <J30$a          | + ' (' + S + ')' 
+540$b           | <J30$a          | + ' (' + S + ')'
 540$d           | <J30$a          | + ' / ' + S
 540$n           | <J30$a          | + ' / ' + S
 540$g           | <J30$n          | S
@@ -1821,7 +1833,7 @@ K00             | 600             | S;
 610I1           | 610I1           | If (S = '1') Then '1' Else If ((S = '2' Or S = ' ') And (RegFind(@610$a, ', ') >= 0)) Then '0' Else '2'
 610I2           | 610I2           | '4'
 610$p           | <K10$a          | S
-610$a           | <K10$a          | If Exists($p) Then $p +'. '+S Else S  
+610$a           | <K10$a          | If Exists($p) Then $p +'. '+S Else S
 610$c           | <K10$b          | If ($c Precedes $t Or (Not Exists($t))) Then S
 610$i           | <K10$n          | If ($i Precedes $t Or (Not Exists($t))) Then ' (' + S + ')' Else S
 610$k           | <K10$d          | ' (' + S + ')'
@@ -1892,7 +1904,7 @@ K30             | 630             | S;
 652             | 650(newest)     | S; Replace('$b' By '$x');
                                        Replace ('$y' By '$A');
                                        Replace('$z' By '$y');
-                                       Replace('$A' By '$z') + '$2ysa'                
+                                       Replace('$A' By '$z') + '$2ysa'
 
 653             | 650(new)I1      | ' '
 653             | 650(newest)I2   | '7'
@@ -1913,9 +1925,9 @@ K30             | 630             | S;
 655             | 651(newest)I2   | '7'
 655             | 651(newest)     | S; Replace('$b' By '$C');
                                        Replace('$y' By '$A');
-                                       Replace('$z' By '$y'); 
+                                       Replace('$z' By '$y');
                                        Replace('$A' By '$z');
-                                       Replace('$C' By '$z') + '$2ysa' 
+                                       Replace('$C' By '$z') + '$2ysa'
 
 656             | 650(new)I1      | ' '
 656             | 650(newest)I2   | '7'
@@ -1928,7 +1940,7 @@ K30             | 630             | S;
 657             | 650(newest)I2   | '7'
 657             | 650(newest)     | S; Replace('$b' By '$x');
                                        Replace('$y' By '$A');
-                                       Replace('$z' By '$y'); 
+                                       Replace('$z' By '$y');
                                        Replace('$A' By '$z') + '$2cilla'
 
 
@@ -1936,7 +1948,7 @@ K30             | 630             | S;
 658             | 650(newest)I2   | '7'
 658             | 650(newest)     | S; Replace('$b' By '$x');
                                        Replace('$y' By '$A');
-                                       Replace('$z' By '$y'); 
+                                       Replace('$z' By '$y');
                                        Replace('$A' By '$z') + '$2bella'
 
 660             | 650(new)I1      | ' '
@@ -2070,7 +2082,7 @@ L00             | 700(newest)     | S;
 710I1           | 710I1           | If (S = '1') Then '1' Else If (S = '2' And (RegFind(@710$a, ', ') >= 0)) Then '0' Else '2'
 710I2           | 710I2           | ' '
 710$p           | <L10$a          | S
-710$a           | <L10$a          | If Exists($p) Then $p +'. '+S Else S 
+710$a           | <L10$a          | If Exists($p) Then $p +'. '+S Else S
 710$c           | <L10$b          | If ($c Precedes $t Or (Not Exists($t))) Then S
 710$i           | <L10$n          | If ($i Precedes $t Or (Not Exists($t))) Then '(' + S + ')' Else S
 710$k           | <L10$d          | '(' + S + ')'
@@ -2147,7 +2159,7 @@ L11             | 711             | If (RegFind('.*\\$(.)') < 0) Then S + '.' El
                                        Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
-                                       Replace ('$w' By '$x', Strict) 
+                                       Replace ('$w' By '$x', Strict)
 
 762I1           | 762I1           | '0'
 762I2           | 762I2           | ' '
@@ -2156,7 +2168,7 @@ L11             | 711             | If (RegFind('.*\\$(.)') < 0) Then S + '.' El
                                        Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
-                                       Replace ('$w' By '$x', Strict) 
+                                       Replace ('$w' By '$x', Strict)
 
 769I1           | 767I1           | '0'
 769I2           | 767I2           | ' '
@@ -2165,7 +2177,7 @@ L11             | 711             | If (RegFind('.*\\$(.)') < 0) Then S + '.' El
                                        Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
-                                       Replace ('$w' By '$x', Strict) 
+                                       Replace ('$w' By '$x', Strict)
 
 773I1           | 773I1           | '0'
 773I2           | 773I2           | ' '
@@ -2205,55 +2217,55 @@ L73             | 773             | S;
                                     Replace ('$g' By '. -$g', Strict)
 
 776I1           | 776I1           | '0'
-776I2           | 776I2           | ' ' 
+776I2           | 776I2           | ' '
 776             | 776             | S; Replace ('$a' By '$t', Strict);
                                        Replace ('$n' By ' / ', Strict);
-                                       Replace ('$g' By '. ', Strict); 
+                                       Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
                                        Replace ('$w' By '$x', Strict)
 
 779I1           | 772I1           | '0'
-779I2           | 772I2           | ' ' 
+779I2           | 772I2           | ' '
 779             | 772             | S; Replace ('$a' By '$t', Strict);
                                        Replace ('$n' By ' / ', Strict);
-                                       Replace ('$g' By '. ', Strict); 
+                                       Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
                                        Replace ('$w' By '$x', Strict)
 
 780I1           | 780I2           | If (I1=' ') Or (I1='0') Then '0' Else S
-780I2           | 780I1           | '0' 
+780I2           | 780I1           | '0'
 780             | 780             | S; Replace ('$a' By '$t', Strict);
                                        Replace ('$n' By ' / ', Strict);
-                                       Replace ('$g' By '. ', Strict); 
+                                       Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
                                        Replace ('$w' By '$x', Strict)
 
-785I1           | 785I2           | If (S > 0 And S <= 7) Then S Else If (S = '9') Then '7' Else '0'' 
-785I2           | 785I1           | '0' 
+785I1           | 785I2           | If (S > 0 And S <= 7) Then S Else If (S = '9') Then '7' Else '0'
+785I2           | 785I1           | '0'
 785             | 785             | S; Replace ('$a' By '$t', Strict);
                                        Replace ('$n' By ' / ', Strict);
                                        Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
-                                       Replace ('$w' By '$x', Strict)   
+                                       Replace ('$w' By '$x', Strict)
 
 787I1           | 787I1           | '0'
-787I2           | 787I2           | ' ' 
+787I2           | 787I2           | ' '
 787             | 787             | S; Replace ('$a' By '$t', Strict);
                                        Replace ('$n' By ' / ', Strict);
-                                       Replace ('$g' By '. ', Strict); 
+                                       Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
                                        Replace ('$w' By '$x', Strict)
 
 789I1           | 770I1           | '0'
-789I2           | 770I2           | ' ' 
+789I2           | 770I2           | ' '
 789             | 770             | S; Replace ('$a' By '$t', Strict);
                                        Replace ('$n' By ' / ', Strict);
-                                       Replace ('$g' By '. ', Strict); 
+                                       Replace ('$g' By '. ', Strict);
                                        Replace ('$h' By '. ', Strict);
                                        RegReplace('$b([^$]*)', '$c(\\1)');
                                        Replace ('$w' By '$x', Strict)
@@ -2261,7 +2273,7 @@ L73             | 773             | S;
 790I1           | 790I1           | ' '
 790I2           | 790I2           | ' '
 790             | 790             | S
-   
+
 810I1           | 810I1           | If (S = '1') Then '1' Else If (S = '2' And (RegFind(@810$a, ', ') > 0)) Then '0' Else '2'
 810I2           | 810I2           | ' '
 810$a           | <M10$a          | S
@@ -2321,7 +2333,7 @@ M30             | 830             | If (RegFind('\\.\$') < 0) Then S + '.' Else 
                                     Replace (' $' By '$')
 
 900I1      | 900I1         | If (I1=1 Or I1=2) Then '1' Else S
-900I2      | 900I2         | If (I2=0) Then ' ' Else S 
+900I2      | 900I2         | If (I2=0) Then ' ' Else S
 900$a      | 900$a         | S
 900$h      | 900$a         | +', ' + S
 900$f      | 900$c         | S
@@ -2329,7 +2341,7 @@ M30             | 830             | If (RegFind('\\.\$') < 0) Then S + '.' Else 
 900$y      | 900$y         | S
 
 910I1      | 910I1         | If (I1=0) Then '2' Else S
-910I2      | 910I2         | If (I2=0) Then ' ' Else S 
+910I2      | 910I2         | If (I2=0) Then ' ' Else S
 910$p      | 910$a         | S
 910$a      | 910$a         | If Exists ($p) Then $p +'. ' + S Else S
 910$c      | 910$b         | S
@@ -2341,7 +2353,7 @@ M30             | 830             | If (RegFind('\\.\$') < 0) Then S + '.' Else 
 910$y      | 910$y         | S
 
 911I1      | 911I1         | '2'
-911I2      | 911I2         | If (I2=0) Then ' ' Else S 
+911I2      | 911I2         | If (I2=0) Then ' ' Else S
 911$a      | 911$a         | S
 911$c      | 911$e         | S
 911$i      | 911$n         | S
@@ -2355,8 +2367,8 @@ M30             | 830             | If (RegFind('\\.\$') < 0) Then S + '.' Else 
 942I2      | 942I2         | S
 942        | 942           | S
 
-945I1      | 940I1         | If (I1=0 Or I1=' ') Then ' ' Else S 
-945I2      | 940I2         | If (I2=0 Or I1=' ') Then '0' Else S 
+945I1      | 940I1         | If (I1=0 Or I1=' ') Then ' ' Else S
+945I2      | 940I2         | If (I2=0 Or I1=' ') Then '0' Else S
 945$a      | 940$a         | S
 945$y      | 940$y         | S
 
