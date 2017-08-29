@@ -1,5 +1,5 @@
 FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
-10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 29.8.2017 (TV)
+10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 28.8.2017 (TV)
 
 #define version 317
 
@@ -1234,14 +1234,20 @@ F45             | 245             | S;
                                     If (NextSub($a, '=1') = 'a') ReplaceOcc ('$a' By ' ;$b', '=2', Strict);
                                     ReplaceOcc ('$a' By ' ; ', '>1', Strict);
                                     If (NextSub($a, '=1') != 'a' And Not ExistsIn(S, $b)) ReplaceOcc ('$r' By ' =$b', '=1', Strict);
-                                    MoveBefore('r', $b);
 
-                                    Replace ('$r' By ' = ', Strict);
+                                    //Replace ('$r' By ' = ', Strict);
                                     Replace ('$t' By '. ', Strict);
                                     ReplaceOcc ('$c' By ' / ', '>1', Strict);
                                     Replace ('$c' By ' /$c', Strict);
                                     If (ExistsIn(S, $c)) Replace ('$d' By ' / ', Strict);
                                     ReplaceOcc ('$d' By ' / ', '>1', Strict);
+
+                                    #if (ExistsIn(S, '$r'))
+                                    MoveBefore('r', $b);
+                                    Replace('$b' By ' : ');
+                                    Replace(':$r' By '=$b');
+                                    #endif
+
                                     Replace ('$d' By ' /$c', Strict);
                                     Replace ('$e' By ' ; ', Strict);
 
