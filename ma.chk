@@ -40,7 +40,7 @@ Format checking file
 019?| I1= | I2= | $6? | $8* | $a_ |
 
 // International Standard Book Number
-020*| I1=_ | I2=_ | $6? | $8* | $a? | $c? | $z* |
+020*| I1=_ | I2=_ | $6? | $8* | $a? | $c? | $q* | $z* |
 
 // International Standard Serial Number
 022*| I1=_01 | I2=_ | $2? | $6? | $8* | $a? | $l? | $m* | $y* | $z* |
@@ -87,7 +87,7 @@ Format checking file
 // Record Content Licensor
 038?| I1=_ | I2=_ | $6? | $8* | $a_ |
 
-// Local field: Suomalainen kartastokoordinaattij‰rjestelm‰
+// Local field: Suomalainen kartastokoordinaattij√§rjestelm√§
 039*| I1=_ | I2=_ | $6? | $8* | $a* | $b? | $d? | $e? | $f? | $g? |
 
 // Cataloging Source
@@ -357,7 +357,7 @@ Format checking file
 // Credits Note
 508*| I1=_ | I2=_ | $6? | $8* | $a? |
 
-// Local field: Opinn‰ytehuomautus
+// Local field: Opinn√§ytehuomautus
 509*| I1=_ | I2=_1 | $6? | $8* | $9? | $a_ | $c* | $d* | $g* | $o* |
 
 // Citation/References Note
@@ -465,7 +465,7 @@ Format checking file
 // Methodology Note
 567*| I1=_8 | I2=_ | $6? | $8* | $a_ |
 
-// Local note: Tilastointimerkint‰ (XLUETTELOITU)
+// Local note: Tilastointimerkint√§ (XLUETTELOITU)
 579*| I1=_ | I2=_ | $6? | $8* | $a_ |
 
 // Linking Entry Complexity Note
@@ -636,7 +636,7 @@ Format checking file
 // Nonspecific Relationship Entry
 787*| I1=01 | I2=_8 | $4* | $6? | $7? | $8* | $a? | $b? | $c? | $d? | $g* | $i* | $k* | $m? | $n* | $o* | $r* | $s? | $t? | $u? | $w* | $x? | $y? | $z* |
 
-// Local field: Linkkikentt‰
+// Local field: Linkkikentt√§
 790*| I1=_ | I2=_ | $6? | $8* | $a_ | $x? |
 
 // Personal Name, Series Added Entry
@@ -672,7 +672,7 @@ Format checking file
 // Non-MARC Information Field
 887*| I1=_ | I2=_ | $2? | $a_ |
 
-// Local field: Viittaus henkilˆn nimest‰
+// Local field: Viittaus henkil√∂n nimest√§
 900*| I1=_013 | I2=_1 | $6? | $8* | $a_ | $c? | $d? | $t? | $y? |
 
 // Local field: FENNICAn kirjastokohtainen koodi
@@ -699,16 +699,16 @@ Format checking file
 // Local field: Kansallisuuskoodi
 908*| I1=_ | I2=_ | $6? | $8* | $a* |
 
-// Local field: Viittaus yhteisˆn nimest‰
+// Local field: Viittaus yhteis√∂n nimest√§
 910*| I1=_12 | I2=_1 | $6? | $8* | $a_ | $b* | $c? | $d? | $g? | $n? | $t? | $y? |
 
-// Local field: Viittaus kongressin nimest‰
+// Local field: Viittaus kongressin nimest√§
 911*| I1=_ | I2=_1 | $6? | $8* | $a_ | $c? | $d? | $e? | $g? | $n? | $t? | $y? |
 
-// Local field: Komitean asettamisp‰iv‰ (E)
+// Local field: Komitean asettamisp√§iv√§ (E)
 930*| I1=_ | I2=_ | $6? | $8* | $a_ |
 
-// Local field: Komitean mietinnˆn luovuttamisp‰iv‰ (E)
+// Local field: Komitean mietinn√∂n luovuttamisp√§iv√§ (E)
 931*| I1=_ | I2=_ | $6? | $8* | $a_ |
 
 // Local field: Komitean puheenjohtaja (E)
@@ -720,7 +720,7 @@ Format checking file
 // Local field: Kirjastokohtainen koodi (FENNICA)
 935*| I1=_ | I2=_ | $6? | $8* | $a_ |
 
-// Local field: Viittaus nimekkeest‰
+// Local field: Viittaus nimekkeest√§
 940*| I1=_1 | I2=0123456789 | $6? | $8* | $a_ | $y_ |
 
 // ?
