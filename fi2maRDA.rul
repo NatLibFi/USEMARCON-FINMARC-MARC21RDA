@@ -1,5 +1,5 @@
 FINMARC(98) bibliographic --> MARC 21 (RDA / hybridi) - HELLE-kirjastojen haara
-10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 28.8.2017 (TV)
+10.2.2017 / Kansalliskirjasto (TV) / Päivitetty 26.1.2018 (UI + MK)
 
 #define version 317
 
@@ -503,15 +503,23 @@ A37             | 337(newest)$2   | 'rdamedia'
 
 // musiikkiäänite
 #if (@000/7/ = 'j')
-000		| 336(new)$a	  | If (RegFind(@652, 'nikirja') >=0) Then 'Puhe' Else 'esitetty musiikki'
+000		| 336(new)$a	  | If (RegFind(@652, 'nikirja') >=0) Then 'puhe' Else 'esitetty musiikki'
 008/24-25/	| 337(new)$a	  | If (@008/24/ = 'm') or (@008/25/ = 'm') Then 'elektroninen' Else 'audio'
 #endif
 
 // puheäänite
 #if (@000/7/ = 'i')
-000		| 336(new)$a	  | 'Puhe'
+000		| 336(new)$a	  | 'puhe'
 008/24-25/	| 337(new)$a	  | If (@008/24/ = 'm') or (@008/25/ = 'm') Then 'elektroninen' Else 'audio'
 #endif
+
+// Tallennetyyppikenttää 338 ei luoda osakohteisiin
+//#if ((@000/7/ = 'i' Or @000/7/ = 'j') And @000/8/ = 'm')
+//008/24/         | 338(new)$a      | 'nide'
+//008/24/         | 338(newest)$b   | 'nc'
+//008/24/         | 338(newest)$2   | 'rdacarrier'
+//#endif
+//Tehtävä uusi taulukko 008-24-338a_aanite
 
 // nuottijulkaisu ja nuottikäsikirjoitus
 #if (@000/7/ = 'c' Or @000/7/ = 'd')
@@ -523,12 +531,11 @@ A37             | 337(newest)$2   | 'rdamedia'
 008/24/         | <B37$a          | Table ('008-23-337a.tbl')
 B37$a           | 337(new)$a      | S
 B37$a           | 337(newest)$b   | Table ('337_b.tbl')
-
 B37$a           | 337(newest)$2   | 'rdamedia'
 #endif
 
 // Tallennetyyppikenttää 338 ei luoda osakohteisiin
-#if (@000/7/ = 'c' Or @000/7/ = 'd' And (Not Exists(@773)))
+#if ((@000/7/ = 'c' Or @000/7/ = 'd') And @000/8/ = 'm')
 008/24/         | 338(new)$a      | 'nide'
 008/24/         | 338(newest)$b   | 'nc'
 008/24/         | 338(newest)$2   | 'rdacarrier'
@@ -954,7 +961,7 @@ D41             | 041             | Sort('abdefghjkmn')
 
 052             | 052(new)        | S
 
-//Info: 1)  Kirjastokohtaiset luokitukset konvertoidaan 09-alkuisiin kenttiin.
+//Info: 1)  Kirjastokohtaiset luokitukset konvertoidaan 09-alkuisiin kenttiin, osa poistetaan.
 //2) Kirjastokohtaiset luokitukset ovat hyllyluokituksia, jolloin ne konvertoidaan sijaintikenttään 852.
 //1) Kaikki konvertoitu 090-kenttään:
 
@@ -965,25 +972,13 @@ D41             | 041             | Sort('abdefghjkmn')
 053(1)$a        | 852(newest)$a   | 'FI-Asko'
 053(1)$a        | 852(newest)$h   | S
 
-054             | 090(new)        | S
-054I1           | 852(new)I1      | ' '
-054I2           | 852(newest)I2   | ' '
-054(1)$a        | 852(newest)$a   | 'FI-Porna'
-054(1)$a        | 852(newest)$h   | S
+054             | <DEL            | S
 
-055             | 090(new)        | S
-055I1           | 852(new)I1      | ' '
-055I2           | 852(newest)I2   | ' '
-055(1)$a        | 852(newest)$a   | 'FI-Pom'
-055(1)$a        | 852(newest)$h   | S
+055             | <DEL            | S
 
-056             | 090(new)        | S
-056I1           | 852(new)I1      | ' '
-056I2           | 852(newest)I2   | ' '
-056(1)$a        | 852(newest)$a   | 'FI-Sipoo'
-056(1)$a        | 852(newest)$h   | S
+056             | <DEL            | S
 
-057             | 090(new)        | S
+057             | <DEL            | S
 
 058             | 090(new)        | S
 
@@ -1029,15 +1024,9 @@ D41             | 041             | Sort('abdefghjkmn')
 
 079             | 090(new)        | S
 
-080$a           | 080(new)$a      | S;
-                                    Replace ('(' By '$x(');
-                                    Replace ('-' By '$x-');
-                                    Replace ('=' By '$x=');
-                                    Replace ('"' By '$x"');
-                                    Replace ('*' By '$x*')
+080$a           | <DEL            | S
 
-081$a           | <AAF(new)$a(nt) | S
-AAF             | 084(new)        | S + '$2kssb'
+081$a           | <DEL            | S
 
 098$a           | <AAE(new)I1     | If (I1 = '1') Then '9' Else ' '
 098$a           | <AAE(newest)I2  | I2
@@ -2431,4 +2420,4 @@ N56$a           | 850(1)$a(1)     | KirjastotunnusISILiksi;
 N58$a           | 850(1)$a(1)     | KirjastotunnusISILiksi;
                                     If (D = '') Then S Else D + '$a' + S
 
-999             | 999             | S
+999             | 999             | S  
